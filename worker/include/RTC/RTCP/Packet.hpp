@@ -14,8 +14,8 @@ namespace RTC
 		extern uint8_t Buffer[BufferSize];
 
 		// Maximum interval for regular RTCP mode.
-		constexpr uint16_t MaxAudioIntervalMs{ 2500 };
-		constexpr uint16_t MaxVideoIntervalMs{ 500 };
+		constexpr uint16_t MaxAudioIntervalMs{ 1000 };
+		constexpr uint16_t MaxVideoIntervalMs{ 250 };
 
 		enum class Type : uint8_t
 		{
