@@ -423,6 +423,13 @@ namespace RTC
 			if (worstRemoteFractionLost > 0)
 				MS_DEBUG_TAG(rtcp, "using worst remote fraction lost:%" PRIu8, worstRemoteFractionLost);
 		}
+		// We are doing some hack here, but what Mediasoup developers did is exceptionally ugly.
+		// They collect fraction loss among all receivers and translate the highest one to the sender in RR.
+		// As result, it causes drop bitrate in case of a single stream for sender and
+		// switch off layers in case of simulcast.
+		// One bad receiver makes experience of the entire conference WORSE!!!111
+		// The behavior is reproducible near 100%.
+		worstRemoteFractionLost = 0;
 
 		auto* report = new RTC::RTCP::ReceiverReport();
 
